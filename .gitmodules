@@ -1,6 +1,6 @@
 [submodule "frontend"]
 	path = frontend
-	url = https://github.com/Vlvin/GFS_frontend
+	url = https://github.com/Vlvin/GFS_frontend.git
 [submodule "authService"]
 	path = GFS_authService
 	url = https://github.com/Vlvin/GFS_authService.git
