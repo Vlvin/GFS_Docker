@@ -7,7 +7,7 @@ services:
     restart: always
   authservice:
     build:
-      dockerfile: dockerFiles/authService
+      dockerfile: dockerFiles/backend
     ports:
     - "3001:8080"
     restart: always
