@@ -1,13 +1,44 @@
 services:
+  db:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: abc1234
+      MYSQL_DATABASE: ghost_form_service 
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: admin 
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - gfsnetwork
+  backend:
+    build:
+      context: .
+      dockerfile: dockerFiles/backend
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "3001:8080"
+    restart: always
+    volumes:
+      - ./dockerFiles/appsettings.json:/app/appsettings.json
+    networks:
+      - gfsnetwork
   frontend:
     build:
       dockerfile: dockerFiles/frontend
+    depends_on:
+      backend:
+        condition: service_started
     ports:
-    - 3000:80
+      - "3000:80"
     restart: always
-  authservice:
-    build:
-      dockerfile: dockerFiles/backend
-    ports:
-    - "3001:8080"
-    restart: always
+volumes:
+  db-data:
+networks:
+  gfsnetwork:
+    driver: bridge

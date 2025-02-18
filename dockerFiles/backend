@@ -4,9 +4,8 @@ COPY ../GFS_backend/ ./
 RUN dotnet restore
 RUN dotnet publish -o out
 
-
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS worker
 WORKDIR /app
 COPY --from=builder /app/out .
-CMD ["dotnet", "AuthService.dll"]
+CMD ["dotnet", "Backend.dll"]
 # EXPOSE 5001
