@@ -1,6 +1,7 @@
 FROM node:alpine as build
 WORKDIR /usr/app
 COPY ./GFS_frontend ./
+COPY ./dockerFiles/.env ./
 RUN npm config set legacy-peer-deps true
 RUN npm install
 RUN npm run build
