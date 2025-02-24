@@ -20,7 +20,7 @@ This project is docker based, so installation is pretty simple:
 
 after that, you'll got front-end running on localhost:3000, backend - on localhost:3001 and database on localhost:3306
 
-you can change default backend url, go to dockerFiles/.env and set REACT_APP_BACKEND_URL to your backend url
+you can change default backend url, go to dockerFiles/.env and set REACT_APP_BACKEND_URL to your backend url and REACT_APP_BACKEND_PROTOCOL if you plan to use something different from https
 
 you can also change JWT configurations, go to dockerFiles/application.json in "JWT" section
 
